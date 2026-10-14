@@ -2,187 +2,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HunarHub | Discover Local Talent</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #faf7f0;
-      color: #26352b;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 22px 7%;
-      background: #fff;
-      border-bottom: 1px solid #eee7dc;
-    }
-    .logo { font-size: 27px; font-weight: bold; color: #286447; }
-    nav a {
-      text-decoration: none;
-      color: #26352b;
-      margin-left: 22px;
-    }
-    .hero {
-      padding: 80px 7%;
-      background: #e7efdf;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: clamp(34px, 5vw, 56px);
-      max-width: 760px;
-      margin: 0 auto 18px;
-      line-height: 1.15;
-    }
-    .hero p {
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 600px;
-      margin: 0 auto 28px;
-    }
-    .search {
-      display: flex;
-      gap: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    input, button {
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 15px;
-    }
-    input { flex: 1; min-width: 0; border: 1px solid #ccc; }
-    button {
-      background: #286447;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .section { padding: 50px 7%; }
-    .section h2 { margin-bottom: 25px; font-size: 30px; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      border: 1px solid #eee7dc;
-    }
-    .card .emoji { font-size: 36px; margin-bottom: 15px; }
-    .card h3 { margin-bottom: 9px; }
-    .card p { color: #68736a; line-height: 1.5; }
-    footer {
-      background: #263b2e;
-      color: white;
-      padding: 25px 7%;
-      text-align: center;
-    }
-    @media (max-width: 600px) {
-      header { flex-wrap: wrap; gap: 15px; }
-      nav a { margin-left: 0; margin-right: 12px; }
-      .search { flex-direction: column; }
-      .hero { padding: 55px 6%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discover local artisans, handmade products and skilled service providers with HunarHub.">
+<title>HunarHub — Local Skills, Extraordinary Stories</title>
+<style>
+:root{--green:#285c43;--dark:#183b2c;--cream:#faf8f2;--orange:#d18a51;--muted:#73796f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:var(--cream);color:#25372d}
+a{color:inherit}
+header{padding:18px 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:white;border-bottom:1px solid #eee9df;position:sticky;top:0;z-index:10}
+.logo{font-size:27px;font-weight:800;color:var(--green);text-decoration:none}
+.logo span{color:var(--orange)}
+nav{display:flex;align-items:center;gap:25px}
+nav a{text-decoration:none;font-size:14px}
+nav a:hover{color:var(--orange)}
+button,.btn{border:0;border-radius:7px;padding:13px 18px;background:var(--green);color:white;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:var(--dark)}
+.hero{padding:65px 7%;display:grid;grid-template-columns:1.05fr .95fr;gap:45px;align-items:center;background:#edf0e5}
+.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--green);font-size:12px;font-weight:bold;margin-bottom:18px}
+.hero h1{font:500 clamp(38px,5vw,65px)/1.1 Georgia,serif;margin-bottom:20px}
+.hero h1 em{color:var(--green)}
+.hero p{color:#626b60;line-height:1.8;max-width:500px;margin-bottom:25px}
+.hero-image{width:100%;height:390px;object-fit:cover;border-radius:45% 45% 12px 12px;background:#d7dfcd}
+.search{display:flex;gap:8px;padding:7px;background:white;border-radius:10px;max-width:520px}
+.search input{flex:1;min-width:0;border:0;outline:0;padding:12px;font-size:14px}
+.trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;font-size:12px;color:#566557}
+section.content{padding:60px 7%}
+.heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}
+.heading h2{font:500 clamp(28px,4vw,39px) Georgia,serif;margin-top:8px}
+.heading p{color:var(--muted);margin-top:10px;line-height:1.6}
+.link{color:var(--green);font-weight:bold;text-decoration:none}
+.categories,.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.category{background:white;border:1px solid #eee9df;border-radius:12px;padding:25px 20px;transition:.2s}
+.category:hover,.product:hover{transform:translateY(-4px);box-shadow:0 12px 30px #25372d12}
+.category .emoji{font-size:36px;margin-bottom:16px}
+.category h3{margin-bottom:9px}
+.category p,.product-info p{font-size:13px;color:var(--muted);line-height:1.6}
+.product{background:white;border-radius:12px;overflow:hidden;border:1px solid #eee9df;transition:.2s}
+.product img{width:100%;height:205px;object-fit:cover;display:block;background:#e8e5da}
+.product-info{padding:17px}
+.product-info small{color:var(--green);font-weight:bold;letter-spacing:1px}
+.product-info h3{font-size:16px;margin:10px 0}
+.price{margin-top:12px;font-weight:bold;color:var(--dark)}
+.seller{font-size:12px;color:var(--muted);margin-top:7px}
+.story{background:#e7ecdf;display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;padding:42px;border-radius:16px}
+.story h2{font:500 36px/1.2 Georgia,serif;margin:12px 0 18px}
+.story p{color:#5e695e;line-height:1.8;margin-bottom:20px}
+.story-art{font-size:90px;text-align:center}
+.cta{text-align:center;background:#285c43;color:white;padding:55px 7%}
+.cta h2{font:500 35px Georgia,serif;margin-bottom:14px}
+.cta p{color:#e0e9e1;line-height:1.7;margin-bottom:22px}
+.cta .btn{background:white;color:var(--green)}
+footer{background:var(--dark);color:white;padding:30px 7%;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{color:#d1ddd2;font-size:13px;margin-top:8px}
+.notice{font-size:13px;color:var(--muted);margin-top:20px}
+.empty{display:none;color:var(--muted);padding:20px 0}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.hero-image{height:320px}.categories,.products{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:12px}nav a{font-size:12px}}
+@media(max-width:540px){header{padding:16px 5%;flex-wrap:wrap}nav{width:100%;justify-content:space-between;gap:8px}nav a{font-size:11px}.hero,section.content{padding:40px 5%}.hero-image{height:260px}.search{flex-direction:column}.heading{align-items:start;flex-direction:column}.categories,.products{gap:12px}.category{padding:17px 13px}.product img{height:140px}.product-info{padding:12px}.story{grid-template-columns:1fr;padding:25px}.story h2{font-size:30px}.story-art{font-size:65px}}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">🌿 HunarHub</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#categories">Explore</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
+<header>
+<a class="logo" href="#home">Hunar<span>Hub.</span></a>
+<nav>
+<a href="#home">Home</a>
+<a href="#categories">Explore</a>
+<a href="#products">Marketplace</a>
+<a href="#about">Our Story</a>
+<button onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Join as Artisan ↗</button>
+</nav>
+</header>
 
-  <main>
-    <section class="hero" id="home">
-      <h1>Local Skills. Extraordinary Stories.</h1>
-      <p>
-        Discover talented local entrepreneurs, shop handmade
-        treasures, and connect with the people behind every craft.
-      </p>
-      <form class="search" id="searchForm">
-        <input id="searchInput" type="search"
-          placeholder="Search tailors, pottery, handmade gifts..."
-          aria-label="Search categories" />
-        <button type="submit">Explore HunarHub</button>
-      </form>
-    </section>
+<main>
+<section class="hero" id="home">
+<div>
+<div class="eyebrow">✳ Made local, loved everywhere</div>
+<h1>Every craft has a story. <em>Discover yours.</em></h1>
+<p>Meet the talented hands behind your favourite handmade treasures. Discover local artisans, support small businesses, and bring home something meaningful.</p>
+<form class="search" id="searchForm">
+<input id="searchInput" type="search" placeholder="Search pottery, tailoring, handmade gifts..." aria-label="Search products and categories">
+<button type="submit">Explore →</button>
+</form>
+<div class="trust"><span>✓ Support local makers</span><span>✓ Discover unique crafts</span></div>
+</div>
+<img class="hero-image" src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1000&q=85" alt="Creative craft workspace">
+</section>
 
-    <section class="section" id="categories">
-      <h2>Explore Local Talent</h2>
-      <div class="grid" id="categoryGrid">
-        <article class="card" data-search="tailor tailoring clothes">
-          <div class="emoji">🧵</div>
-          <h3>Tailors</h3>
-          <p>Custom stitching and clothing services.</p>
-        </article>
-        <article class="card" data-search="potter pottery clay handmade">
-          <div class="emoji">🏺</div>
-          <h3>Potters</h3>
-          <p>Beautiful handmade pottery and clay art.</p>
-        </article>
-        <article class="card" data-search="cobbler shoes repair footwear">
-          <div class="emoji">👞</div>
-          <h3>Cobblers</h3>
-          <p>Footwear repair and skilled craftsmanship.</p>
-        </article>
-        <article class="card" data-search="artisan crafts art handmade">
-          <div class="emoji">🎨</div>
-          <h3>Artisans</h3>
-          <p>Unique crafts made with creativity and care.</p>
-        </article>
-        <article class="card" data-search="vendor shop products local">
-          <div class="emoji">🛍️</div>
-          <h3>Local Vendors</h3>
-          <p>Discover products from small businesses.</p>
-        </article>
-      </div>
-      <p id="searchMessage" role="status" style="margin-top:20px"></p>
-    </section>
+<section class="content" id="categories">
+<div class="heading"><div><div class="eyebrow">Find your people</div><h2>Explore local talent</h2><p>Good things are made by hand, with heart.</p></div><a class="link" href="#products">Discover more ↗</a></div>
+<div class="categories" id="categoryGrid">
+<article class="category" data-search="tailor tailoring stitching clothes">
+<div class="emoji">🧵</div><h3>Tailors</h3><p>Custom stitching, alterations and designs.</p>
+</article>
+<article class="category" data-search="potter pottery clay ceramic">
+<div class="emoji">🏺</div><h3>Potters</h3><p>Hand-shaped ceramics and traditional clay art.</p>
+</article>
+<article class="category" data-search="cobbler shoes repair footwear">
+<div class="emoji">👞</div><h3>Cobblers</h3><p>Expert footwear repair and care.</p>
+</article>
+<article class="category" data-search="artisan craft handmade art">
+<div class="emoji">🎨</div><h3>Artisans</h3><p>One-of-a-kind creations made with love.</p>
+</article>
+</div>
+<p id="noCategories" class="empty">No matching categories found. Try another search.</p>
+</section>
 
-    <section class="section" id="about">
-      <h2>Every Skill Deserves to Be Seen.</h2>
-      <p style="line-height:1.8;max-width:700px">
-        HunarHub helps local micro-entrepreneurs showcase their skills
-        and products, reach more customers, and grow their businesses.
-        Support local talent and keep traditional craftsmanship alive.
-      </p>
-    </section>
-  </main>
+<section class="content" id="products" style="background:#fff">
+<div class="heading"><div><div class="eyebrow">Handpicked with love</div><h2>Little things, big stories.</h2><p>Sample treasures from our local makers.</p></div></div>
+<div class="products" id="productGrid">
+<article class="product" data-search="pottery ceramic vase home decor">
+<img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80" alt="Ceramic pottery" loading="lazy">
+<div class="product-info"><small>HOME & LIVING</small><h3>Handcrafted Ceramic</h3><p>Made by skilled local potters</p><div class="price">₹450 onwards</div><div class="seller">Local artisan collection</div></div>
+</article>
+<article class="product" data-search="handmade bag artisan woven craft">
+<img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80" alt="Crafted everyday bag" loading="lazy">
+<div class="product-info"><small>ACCESSORIES</small><h3>Everyday Craft Bag</h3><p>Thoughtfully crafted accessories</p><div class="price">₹650 onwards</div><div class="seller">Made with care</div></div>
+</article>
+<article class="product" data-search="jewellery jewelry handmade accessories">
+<img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=600&q=80" alt="Handmade jewellery" loading="lazy">
+<div class="product-info"><small>JEWELLERY</small><h3>Artisan Jewellery</h3><p>Small details, special meaning</p><div class="price">₹300 onwards</div><div class="seller">Unique handmade pieces</div></div>
+</article>
+<article class="product" data-search="basket woven handmade home decor">
+<img src="https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=600&q=80" alt="Woven home decor" loading="lazy">
+<div class="product-info"><small>HANDMADE DECOR</small><h3>Woven Home Decor</h3><p>Natural textures and timeless craft</p><div class="price">₹350 onwards</div><div class="seller">Local craft collection</div></div>
+</article>
+</div>
+<p class="notice">Demo listings only. Product prices, availability and seller details are examples, not verified offers.</p>
+</section>
 
-  <footer>
-    <p>© 2026 HunarHub · Empowering Local Entrepreneurs</p>
-  </footer>
+<section class="content" id="about">
+<div class="story"><div><div class="eyebrow">More than a marketplace</div><h2>Behind every handmade piece is a human story.</h2><p>HunarHub connects local micro-entrepreneurs with customers who value their skills. From neighbourhood tailors to traditional potters, we're making local talent easier to discover.</p><a class="link" href="#categories">Meet the makers ↓</a></div><div class="story-art" aria-hidden="true">🌿 👐 🏺</div></div>
+</section>
 
-  <script>
-    const form = document.getElementById("searchForm");
-    const input = document.getElementById("searchInput");
-    const cards = [...document.querySelectorAll(".card")];
-    const message = document.getElementById("searchMessage");
+<section class="cta" id="join"><h2>Have a skill worth sharing?</h2><p>Showcase your craft and help more people discover your work.<br>HunarHub celebrates the talent in every neighbourhood.</p><a class="btn" href="mailto:hunarhub@example.com?subject=Join%20HunarHub">I'm an Artisan — Get in Touch</a></section>
+</main>
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const query = input.value.trim().toLowerCase();
-      let count = 0;
+<footer><div><strong style="font-size:22px">HunarHub.</strong><p>Local skills. Extraordinary stories.</p></div><p>© 2026 HunarHub · Supporting local talent</p></footer>
 
-      cards.forEach(function (card) {
-        const matches = card.dataset.search.includes(query);
-        card.hidden = query !== "" && !matches;
-        if (!card.hidden) count++;
-      });
+<script>
+const form=document.getElementById('searchForm');
+const input=document.getElementById('searchInput');
+const categories=[...document.querySelectorAll('.category')];
+const products=[...document.querySelectorAll('.product')];
+const noCategories=document.getElementById('noCategories');
 
-      message.textContent = count
-        ? `${count} category${count === 1 ? "" : "ies"} found.`
-        : "No categories found. Try another search.";
-    });
-  </script>
+form.addEventListener('submit',function(event){
+event.preventDefault();
+const query=input.value.trim().toLowerCase();
+let categoryCount=0;
+categories.forEach(card=>{
+const match=!query||card.dataset.search.includes(query);
+card.style.display=match?'':'none';
+if(match)categoryCount++;
+});
+products.forEach(card=>{
+card.style.display=(!query||card.dataset.search.includes(query))?'':'none';
+});
+noCategories.style.display=categoryCount?'none':'block';
+document.getElementById(categoryCount?'categories':'products').scrollIntoView({behavior:'smooth'});
+});
+</script>
 </body>
 </html>
