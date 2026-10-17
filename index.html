@@ -306,5 +306,92 @@ document.getElementById('hunarhub-request-form').addEventListener('submit', func
 });
 </script>
 
+<section id="artisan-dashboard" style="padding:60px 20px;background:#f5f2eb;color:#243c2e;font-family:Arial,sans-serif;">
+  <div style="max-width:1050px;margin:auto;">
+    <p style="letter-spacing:3px;color:#477052;text-align:center;">MAKER SPACE</p>
+    <h2 style="font-size:34px;text-align:center;margin-bottom:8px;">Artisan Dashboard</h2>
+    <p style="text-align:center;color:#72766f;margin-bottom:30px;">Manage your handmade business in one place.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px;">
+      <div style="background:white;padding:22px;border-radius:14px;"><p>My Listings</p><h3 id="hh-listing-count" style="font-size:30px;margin:0;">3</h3></div>
+      <div style="background:white;padding:22px;border-radius:14px;"><p>Demo Requests</p><h3 id="hh-request-count" style="font-size:30px;margin:0;">2</h3></div>
+      <div style="background:white;padding:22px;border-radius:14px;"><p>Profile Status</p><h3 style="font-size:22px;margin:0;">Active</h3></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+      <div style="background:white;padding:24px;border-radius:16px;">
+        <h3>Add a Listing</h3>
+        <form id="hh-listing-form" style="display:grid;gap:12px;">
+          <input id="hh-product-name" required placeholder="Product or service name" style="padding:12px;border:1px solid #ddd;border-radius:8px;">
+          <select id="hh-product-category" required style="padding:12px;border:1px solid #ddd;border-radius:8px;">
+            <option value="">Choose category</option>
+            <option>Tailoring</option><option>Pottery</option><option>Shoe repair</option><option>Handicrafts</option>
+          </select>
+          <input id="hh-product-price" type="number" min="0" required placeholder="Price in ₹" style="padding:12px;border:1px solid #ddd;border-radius:8px;">
+          <button style="padding:12px;background:#285c43;color:white;border:0;border-radius:8px;cursor:pointer;">Add Listing</button>
+        </form>
+        <p id="hh-listing-message" role="status"></p>
+        <ul id="hh-listing-items"><li>Handmade clay planter — ₹350</li><li>Custom tailoring — ₹500</li><li>Handcrafted decor — ₹250</li></ul>
+      </div>
+
+      <div style="background:white;padding:24px;border-radius:16px;">
+        <h3>Service Requests</h3>
+        <p style="color:#72766f;font-size:14px;">Sample requests for demonstration; not real customer submissions.</p>
+        <div id="hh-request-items">
+          <div style="padding:14px;background:#f5f2eb;border-radius:10px;margin-bottom:12px;">
+            <strong>Custom blouse stitching</strong><p style="margin:7px 0;">Status: <span>Pending</span></p>
+            <button type="button" data-status="Accepted" style="padding:8px 12px;background:#285c43;color:white;border:0;border-radius:6px;cursor:pointer;">Accept</button>
+            <button type="button" data-status="Completed" style="padding:8px 12px;background:#e6e0d4;border:0;border-radius:6px;cursor:pointer;">Complete</button>
+          </div>
+          <div style="padding:14px;background:#f5f2eb;border-radius:10px;">
+            <strong>Clay pot order</strong><p style="margin:7px 0;">Status: <span>Pending</span></p>
+            <button type="button" data-status="Accepted" style="padding:8px 12px;background:#285c43;color:white;border:0;border-radius:6px;cursor:pointer;">Accept</button>
+            <button type="button" data-status="Completed" style="padding:8px 12px;background:#e6e0d4;border:0;border-radius:6px;cursor:pointer;">Complete</button>
+          </div>
+        </div>
+        <p id="hh-dashboard-message" role="status"></p>
+      </div>
+    </div>
+    <p style="font-size:12px;text-align:center;color:#72766f;margin-top:24px;">Demo dashboard only. Listings and request statuses are not saved to a server.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  const form = document.getElementById('hh-listing-form');
+  if (form && !form.dataset.ready) {
+    form.dataset.ready = 'true';
+    let count = 3;
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = document.getElementById('hh-product-name').value.trim();
+      const category = document.getElementById('hh-product-category').value;
+      const price = Number(document.getElementById('hh-product-price').value);
+      if (!name || !category || price < 0) return;
+      const item = document.createElement('li');
+      item.textContent = name + ' (' + category + ') — ₹' + price;
+      document.getElementById('hh-listing-items').appendChild(item);
+      count++;
+      document.getElementById('hh-listing-count').textContent = count;
+      document.getElementById('hh-listing-message').textContent = 'Listing added to this demo page!';
+      form.reset();
+    });
+  }
+
+  const requests = document.getElementById('hh-request-items');
+  if (requests && !requests.dataset.ready) {
+    requests.dataset.ready = 'true';
+    requests.addEventListener('click', function (event) {
+      const button = event.target.closest('button[data-status]');
+      if (!button) return;
+      const card = button.parentElement;
+      card.querySelector('span').textContent = button.dataset.status;
+      document.getElementById('hh-dashboard-message').textContent =
+        'Demo request status updated to ' + button.dataset.status + '.';
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
