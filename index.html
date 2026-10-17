@@ -60,6 +60,23 @@ footer p{color:#d1ddd2;font-size:13px;margin-top:8px}
 .empty{display:none;color:var(--muted);padding:20px 0}
 @media(max-width:850px){.hero{grid-template-columns:1fr}.hero-image{height:320px}.categories,.products{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:12px}nav a{font-size:12px}}
 @media(max-width:540px){header{padding:16px 5%;flex-wrap:wrap}nav{width:100%;justify-content:space-between;gap:8px}nav a{font-size:11px}.hero,section.content{padding:40px 5%}.hero-image{height:260px}.search{flex-direction:column}.heading{align-items:start;flex-direction:column}.categories,.products{gap:12px}.category{padding:17px 13px}.product img{height:140px}.product-info{padding:12px}.story{grid-template-columns:1fr;padding:25px}.story h2{font-size:30px}.story-art{font-size:65px}}
+
+#service-request {
+  scroll-margin-top: 110px;
+}
+
+#service-request h2 {
+  line-height: 1.25;
+  padding-top: 8px;
+}
+
+#service-request input:focus,
+#service-request select:focus,
+#service-request textarea:focus {
+  outline: 2px solid #285c43;
+  outline-offset: 2px;
+}
+
 </style>
 </head>
 <body>
@@ -259,7 +276,7 @@ font-family:Georgia,'Times New Roman',serif
   </div>
 </section>
 
-<section id="service-request" style="padding:65px 20px;background:#f8f5ef;color:#263c2c;font-family:Arial,sans-serif;">
+<section id="service-request" style="padding:65px 20px;background:#f8f5ef;color:#263c2c;font-family:Arial,sans-serif;scroll-margin-top:100px;">
   <div style="max-width:700px;margin:auto;">
     <p style="text-align:center;color:#285c43;letter-spacing:3px;">LET'S MAKE IT HAPPEN</p>
     <h2 style="text-align:center;font-size:34px;margin-bottom:10px;">Request a Service</h2>
