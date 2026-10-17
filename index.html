@@ -410,5 +410,111 @@ document.getElementById('hunarhub-request-form').addEventListener('submit', func
 })();
 </script>
 
+<section id="maker-dashboard" style="padding:65px 20px;background:#f5f2eb;color:#243c2e;font-family:Arial,sans-serif;">
+  <div style="max-width:1050px;margin:auto;">
+    <p style="text-align:center;letter-spacing:3px;color:#477052;">MAKER SPACE</p>
+    <h2 style="text-align:center;font-size:36px;margin-bottom:8px;">Artisan Dashboard</h2>
+    <p style="text-align:center;color:#72766f;margin-bottom:30px;">Your craft. Your business. All in one place.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:25px;">
+      <div style="background:white;padding:22px;border-radius:15px;"><p>My Listings</p><h3 id="maker-listing-count" style="font-size:30px;margin:0;">0</h3></div>
+      <div style="background:white;padding:22px;border-radius:15px;"><p>Sample Requests</p><h3 style="font-size:30px;margin:0;">2</h3></div>
+      <div style="background:white;padding:22px;border-radius:15px;"><p>Workspace</p><h3 style="font-size:22px;margin:0;">Ready</h3></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+      <div style="background:white;padding:25px;border-radius:16px;">
+        <h3>Add a product or service</h3>
+        <form id="maker-listing-form" style="display:grid;gap:13px;">
+          <label>Listing name
+            <input id="maker-name" required maxlength="80" placeholder="e.g. Handmade clay pot" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #ddd;border-radius:8px;">
+          </label>
+          <label>Category
+            <select id="maker-category" required style="display:block;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #ddd;border-radius:8px;background:white;">
+              <option value="">Choose category</option>
+              <option>Tailoring</option><option>Pottery</option><option>Shoe repair</option><option>Handicrafts</option>
+            </select>
+          </label>
+          <label>Price (₹)
+            <input id="maker-price" type="number" min="0" max="10000000" required placeholder="350" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #ddd;border-radius:8px;">
+          </label>
+          <button type="submit" style="padding:13px;background:#285c43;color:white;border:0;border-radius:8px;cursor:pointer;">Add Listing +</button>
+        </form>
+        <p id="maker-feedback" role="status" aria-live="polite"></p>
+        <h4>Your demo listings</h4>
+        <ul id="maker-listings"></ul>
+      </div>
+
+      <div style="background:white;padding:25px;border-radius:16px;">
+        <h3>Manage sample requests</h3>
+        <p style="color:#72766f;font-size:14px;">These are sample requests, not real customer orders.</p>
+        <div id="maker-requests">
+          <article style="padding:16px;background:#f5f2eb;border-radius:10px;margin-bottom:14px;">
+            <strong>Custom blouse stitching</strong>
+            <p>Status: <span>Pending</span></p>
+            <button type="button" data-state="Accepted" style="padding:9px;background:#285c43;color:white;border:0;border-radius:6px;cursor:pointer;">Accept</button>
+            <button type="button" data-state="Completed" style="padding:9px;background:#e4e0d5;border:0;border-radius:6px;cursor:pointer;">Complete</button>
+          </article>
+          <article style="padding:16px;background:#f5f2eb;border-radius:10px;">
+            <strong>Handmade clay pot</strong>
+            <p>Status: <span>Pending</span></p>
+            <button type="button" data-state="Accepted" style="padding:9px;background:#285c43;color:white;border:0;border-radius:6px;cursor:pointer;">Accept</button>
+            <button type="button" data-state="Completed" style="padding:9px;background:#e4e0d5;border:0;border-radius:6px;cursor:pointer;">Complete</button>
+          </article>
+        </div>
+        <p id="maker-request-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <p style="text-align:center;color:#72766f;font-size:12px;margin-top:25px;">Frontend demo only. Listings and request statuses reset when the page reloads.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  const form = document.getElementById('maker-listing-form');
+  const list = document.getElementById('maker-listings');
+
+  if (form && list && !form.dataset.initialized) {
+    form.dataset.initialized = 'true';
+    let count = 0;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('maker-name').value.trim();
+      const category = document.getElementById('maker-category').value;
+      const price = Number(document.getElementById('maker-price').value);
+
+      if (!name || !category || !Number.isFinite(price) || price < 0) return;
+
+      const item = document.createElement('li');
+      item.textContent = name + ' — ' + category + ' — ₹' + price;
+      item.style.marginBottom = '10px';
+      list.appendChild(item);
+
+      count++;
+      document.getElementById('maker-listing-count').textContent = count;
+      document.getElementById('maker-feedback').textContent = 'Listing added to this demo!';
+      form.reset();
+    });
+  }
+
+  const requests = document.getElementById('maker-requests');
+  if (requests && !requests.dataset.initialized) {
+    requests.dataset.initialized = 'true';
+
+    requests.addEventListener('click', function (event) {
+      const button = event.target.closest('button[data-state]');
+      if (!button) return;
+
+      const status = button.parentElement.querySelector('span');
+      status.textContent = button.dataset.state;
+      document.getElementById('maker-request-feedback').textContent =
+        'Sample request updated to ' + button.dataset.state + '.';
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
