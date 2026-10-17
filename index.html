@@ -259,5 +259,52 @@ font-family:Georgia,'Times New Roman',serif
   </div>
 </section>
 
+<section id="service-request" style="padding:65px 20px;background:#f8f5ef;color:#263c2c;font-family:Arial,sans-serif;">
+  <div style="max-width:700px;margin:auto;">
+    <p style="text-align:center;color:#285c43;letter-spacing:3px;">LET'S MAKE IT HAPPEN</p>
+    <h2 style="text-align:center;font-size:34px;margin-bottom:10px;">Request a Service</h2>
+    <p style="text-align:center;color:#73796f;margin-bottom:30px;">Tell us what you need. Our local makers are here to help.</p>
+
+    <form id="hunarhub-request-form" style="background:white;padding:28px;border-radius:18px;box-shadow:0 8px 28px #263c2c12;display:grid;gap:16px;">
+
+      <label>Your name
+        <input name="customerName" type="text" required placeholder="Enter your name" style="display:block;width:100%;box-sizing:border-box;padding:13px;margin-top:7px;border:1px solid #dedbd2;border-radius:9px;">
+      </label>
+
+      <label>Email address
+        <input name="customerEmail" type="email" required placeholder="you@example.com" style="display:block;width:100%;box-sizing:border-box;padding:13px;margin-top:7px;border:1px solid #dedbd2;border-radius:9px;">
+      </label>
+
+      <label>Choose a service
+        <select name="service" required style="display:block;width:100%;box-sizing:border-box;padding:13px;margin-top:7px;border:1px solid #dedbd2;border-radius:9px;background:white;">
+          <option value="">Select a category</option>
+          <option>Tailoring and alterations</option>
+          <option>Pottery and clay products</option>
+          <option>Shoe repair</option>
+          <option>Handmade crafts</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label>Describe what you need
+        <textarea name="details" required rows="4" placeholder="Describe your request..." style="display:block;width:100%;box-sizing:border-box;padding:13px;margin-top:7px;border:1px solid #dedbd2;border-radius:9px;resize:vertical;"></textarea>
+      </label>
+
+      <button type="submit" style="padding:14px;background:#285c43;color:white;border:0;border-radius:9px;font-size:16px;font-weight:bold;cursor:pointer;">Submit Request →</button>
+
+      <p id="hunarhub-request-message" role="status" style="margin:0;text-align:center;color:#285c43;"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+document.getElementById('hunarhub-request-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  document.getElementById('hunarhub-request-message').textContent =
+    'Thank you! Your demo request has been completed.';
+  this.reset();
+});
+</script>
+
 </body>
 </html>
