@@ -516,5 +516,146 @@ document.getElementById('hunarhub-request-form').addEventListener('submit', func
 })();
 </script>
 
+<section id="hh-marketplace-upgrade" style="padding:60px 20px;background:#f8f5ef;color:#263c2c;font-family:Arial,sans-serif;">
+  <div style="max-width:1100px;margin:auto;">
+    <p style="text-align:center;letter-spacing:3px;color:#285c43;">DISCOVER LOCAL TALENT</p>
+    <h2 style="text-align:center;font-size:36px;margin:10px 0;">Find Your Local Maker</h2>
+    <p style="text-align:center;color:#73796f;margin-bottom:30px;">Search unique crafts and skilled services from your community.</p>
+
+    <input id="hh-maker-search" type="search" placeholder="Search pottery, tailoring, crafts..." aria-label="Search makers" style="width:100%;box-sizing:border-box;padding:15px;border:1px solid #dcd5c8;border-radius:12px;background:white;font-size:16px;margin-bottom:18px;">
+
+    <div id="hh-maker-filters" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px;">
+      <button type="button" data-filter="All" style="padding:10px 17px;border:0;border-radius:25px;background:#285c43;color:white;cursor:pointer;">All</button>
+      <button type="button" data-filter="Pottery" style="padding:10px 17px;border:1px solid #dcd5c8;border-radius:25px;background:white;cursor:pointer;">🏺 Pottery</button>
+      <button type="button" data-filter="Tailoring" style="padding:10px 17px;border:1px solid #dcd5c8;border-radius:25px;background:white;cursor:pointer;">🧵 Tailoring</button>
+      <button type="button" data-filter="Shoe Repair" style="padding:10px 17px;border:1px solid #dcd5c8;border-radius:25px;background:white;cursor:pointer;">👞 Shoe Repair</button>
+      <button type="button" data-filter="Handicrafts" style="padding:10px 17px;border:1px solid #dcd5c8;border-radius:25px;background:white;cursor:pointer;">🎨 Handicrafts</button>
+    </div>
+
+    <p id="hh-maker-result-count" aria-live="polite" style="color:#73796f;"></p>
+
+    <div id="hh-maker-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;">
+
+      <article data-category="Pottery" data-search="meera pottery clay handmade planter pots" style="background:white;border-radius:16px;padding:24px;box-shadow:0 5px 20px #263c2c10;">
+        <div style="font-size:42px;">🏺</div>
+        <button type="button" data-favorite style="float:right;border:1px solid #e5dfd4;background:white;border-radius:50%;width:38px;height:38px;cursor:pointer;" aria-label="Add Meera Pottery to favorites" aria-pressed="false">♡</button>
+        <h3>Meera Pottery</h3>
+        <p style="color:#73796f;">Pottery · Bengaluru</p>
+        <p>Handmade clay pots, planters and traditional ceramics.</p>
+        <p style="color:#b56b45;">★★★★★ <span style="color:#73796f;font-size:13px;">Demo rating</span></p>
+        <details>
+          <summary style="cursor:pointer;color:#285c43;font-weight:bold;">Meet the maker</summary>
+          <p>Specialty: Hand-shaped clay products.</p>
+          <p>Experience: Sample profile; details to be verified.</p>
+        </details>
+        <a href="#service-request" style="display:inline-block;margin-top:16px;padding:11px 15px;background:#285c43;color:white;text-decoration:none;border-radius:8px;">Request a Service</a>
+      </article>
+
+      <article data-category="Tailoring" data-search="ananya tailoring stitching clothes alterations custom blouse" style="background:white;border-radius:16px;padding:24px;box-shadow:0 5px 20px #263c2c10;">
+        <div style="font-size:42px;">🧵</div>
+        <button type="button" data-favorite style="float:right;border:1px solid #e5dfd4;background:white;border-radius:50%;width:38px;height:38px;cursor:pointer;" aria-label="Add Ananya Tailoring to favorites" aria-pressed="false">♡</button>
+        <h3>Ananya Tailoring</h3>
+        <p style="color:#73796f;">Tailoring · Bengaluru</p>
+        <p>Custom stitching, alterations and made-to-order clothing.</p>
+        <p style="color:#b56b45;">★★★★★ <span style="color:#73796f;font-size:13px;">Demo rating</span></p>
+        <details>
+          <summary style="cursor:pointer;color:#285c43;font-weight:bold;">Meet the maker</summary>
+          <p>Specialty: Tailoring and clothing alterations.</p>
+          <p>Experience: Sample profile; details to be verified.</p>
+        </details>
+        <a href="#service-request" style="display:inline-block;margin-top:16px;padding:11px 15px;background:#285c43;color:white;text-decoration:none;border-radius:8px;">Request a Service</a>
+      </article>
+
+      <article data-category="Shoe Repair" data-search="ravi cobbler shoe repair footwear sandals leather" style="background:white;border-radius:16px;padding:24px;box-shadow:0 5px 20px #263c2c10;">
+        <div style="font-size:42px;">👞</div>
+        <button type="button" data-favorite style="float:right;border:1px solid #e5dfd4;background:white;border-radius:50%;width:38px;height:38px;cursor:pointer;" aria-label="Add Ravi Shoe Repair to favorites" aria-pressed="false">♡</button>
+        <h3>Ravi Shoe Repair</h3>
+        <p style="color:#73796f;">Shoe Repair · Bengaluru</p>
+        <p>Footwear repair, sandal fixes and shoe care services.</p>
+        <p style="color:#b56b45;">★★★★★ <span style="color:#73796f;font-size:13px;">Demo rating</span></p>
+        <details>
+          <summary style="cursor:pointer;color:#285c43;font-weight:bold;">Meet the maker</summary>
+          <p>Specialty: Shoe and sandal repairs.</p>
+          <p>Experience: Sample profile; details to be verified.</p>
+        </details>
+        <a href="#service-request" style="display:inline-block;margin-top:16px;padding:11px 15px;background:#285c43;color:white;text-decoration:none;border-radius:8px;">Request a Service</a>
+      </article>
+
+      <article data-category="Handicrafts" data-search="kavya handicrafts gifts handmade art decoration crafts" style="background:white;border-radius:16px;padding:24px;box-shadow:0 5px 20px #263c2c10;">
+        <div style="font-size:42px;">🎨</div>
+        <button type="button" data-favorite style="float:right;border:1px solid #e5dfd4;background:white;border-radius:50%;width:38px;height:38px;cursor:pointer;" aria-label="Add Kavya Handicrafts to favorites" aria-pressed="false">♡</button>
+        <h3>Kavya Handicrafts</h3>
+        <p style="color:#73796f;">Handicrafts · Bengaluru</p>
+        <p>Handmade gifts, decorative pieces and creative crafts.</p>
+        <p style="color:#b56b45;">★★★★★ <span style="color:#73796f;font-size:13px;">Demo rating</span></p>
+        <details>
+          <summary style="cursor:pointer;color:#285c43;font-weight:bold;">Meet the maker</summary>
+          <p>Specialty: Handmade gifts and decorations.</p>
+          <p>Experience: Sample profile; details to be verified.</p>
+        </details>
+        <a href="#service-request" style="display:inline-block;margin-top:16px;padding:11px 15px;background:#285c43;color:white;text-decoration:none;border-radius:8px;">Request a Service</a>
+      </article>
+
+      <p id="hh-maker-empty" style="display:none;grid-column:1/-1;text-align:center;padding:30px;">No makers found. Try another search or category.</p>
+    </div>
+    <p style="font-size:12px;text-align:center;color:#73796f;margin-top:25px;">Demo listings and ratings for project presentation. Profiles and reviews are not verified.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  const root = document.getElementById('hh-marketplace-upgrade');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = 'true';
+
+  const search = root.querySelector('#hh-maker-search');
+  const cards = Array.from(root.querySelectorAll('#hh-maker-grid article'));
+  const filters = root.querySelector('#hh-maker-filters');
+  const count = root.querySelector('#hh-maker-result-count');
+  const empty = root.querySelector('#hh-maker-empty');
+  let active = 'All';
+
+  function update() {
+    const query = search.value.trim().toLowerCase();
+    let shown = 0;
+    cards.forEach(function (card) {
+      const matchesCategory = active === 'All' || card.dataset.category === active;
+      const matchesSearch = (card.dataset.search + ' ' + card.innerText).toLowerCase().includes(query);
+      const visible = matchesCategory && matchesSearch;
+      card.hidden = !visible;
+      if (visible) shown++;
+    });
+    count.textContent = shown + (shown === 1 ? ' maker found' : ' makers found');
+    empty.style.display = shown ? 'none' : 'block';
+  }
+
+  search.addEventListener('input', update);
+  filters.addEventListener('click', function (event) {
+    const button = event.target.closest('button[data-filter]');
+    if (!button) return;
+    active = button.dataset.filter;
+    filters.querySelectorAll('button[data-filter]').forEach(function (item) {
+      const selected = item === button;
+      item.style.background = selected ? '#285c43' : 'white';
+      item.style.color = selected ? 'white' : '#263c2c';
+      item.setAttribute('aria-pressed', String(selected));
+    });
+    update();
+  });
+
+  root.addEventListener('click', function (event) {
+    const button = event.target.closest('button[data-favorite]');
+    if (!button) return;
+    const isFavorite = button.getAttribute('aria-pressed') !== 'true';
+    button.setAttribute('aria-pressed', String(isFavorite));
+    button.textContent = isFavorite ? '♥' : '♡';
+    button.style.color = isFavorite ? '#b45e4b' : '#263c2c';
+    button.setAttribute('aria-label', (isFavorite ? 'Remove ' : 'Add ') + button.closest('article').querySelector('h3').textContent + ' ' + (isFavorite ? 'from' : 'to') + ' favorites');
+  });
+
+  update();
+})();
+</script>
+
 </body>
 </html>
