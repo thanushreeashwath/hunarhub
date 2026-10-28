@@ -926,5 +926,106 @@ document.getElementById('hunarhub-request-form').addEventListener('submit', func
 })();
 </script>
 
+<section id="hh-reviews" style="padding:65px 20px;background:#f8f5ef;color:#263c2c;font-family:Arial,sans-serif;">
+  <div style="max-width:1000px;margin:auto;">
+    <p style="text-align:center;letter-spacing:3px;color:#285c43;">KIND WORDS</p>
+    <h2 style="text-align:center;font-size:36px;margin:10px 0;">Stories from Our Community</h2>
+    <p style="text-align:center;color:#73796f;">A place to appreciate local skills and handmade creations.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:32px 0;">
+      <article style="background:white;padding:22px;border-radius:15px;">
+        <div style="color:#b56b45;font-size:21px;">★★★★★</div>
+        <h3>Beautiful handmade pottery</h3>
+        <p>The perfect little planter for my desk. Loved the handmade feel.</p>
+        <p style="color:#73796f;font-size:13px;">Sample review · Demo only</p>
+      </article>
+      <article style="background:white;padding:22px;border-radius:15px;">
+        <div style="color:#b56b45;font-size:21px;">★★★★★</div>
+        <h3>Thoughtful craftsmanship</h3>
+        <p>It's great to discover talented makers and their work locally.</p>
+        <p style="color:#73796f;font-size:13px;">Sample review · Demo only</p>
+      </article>
+      <article style="background:white;padding:22px;border-radius:15px;">
+        <div style="color:#b56b45;font-size:21px;">★★★★☆</div>
+        <h3>A lovely local find</h3>
+        <p>A simple way to explore handmade gifts and useful services.</p>
+        <p style="color:#73796f;font-size:13px;">Sample review · Demo only</p>
+      </article>
+    </div>
+
+    <div style="max-width:620px;margin:35px auto 0;background:white;padding:25px;border-radius:16px;box-shadow:0 5px 20px #263c2c10;">
+      <h3 style="margin-top:0;">Leave a Review</h3>
+      <p style="color:#73796f;font-size:14px;">Try submitting a review to see how the demo works.</p>
+      <form id="hh-review-form" style="display:grid;gap:14px;">
+        <label>Your display name
+          <input id="hh-review-name" required maxlength="50" placeholder="Enter a name" style="display:block;width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #ddd;border-radius:8px;">
+        </label>
+        <label>Rating
+          <select id="hh-review-rating" required style="display:block;width:100%;padding:12px;margin-top:6px;border:1px solid #ddd;border-radius:8px;background:white;">
+            <option value="5">★★★★★ — Excellent</option>
+            <option value="4">★★★★☆ — Very good</option>
+            <option value="3">★★★☆☆ — Good</option>
+            <option value="2">★★☆☆☆ — Fair</option>
+            <option value="1">★☆☆☆☆ — Needs improvement</option>
+          </select>
+        </label>
+        <label>Your review
+          <textarea id="hh-review-text" required maxlength="500" rows="4" placeholder="Share your experience..." style="display:block;width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border:1px solid #ddd;border-radius:8px;resize:vertical;"></textarea>
+        </label>
+        <button type="submit" style="padding:13px;background:#285c43;color:white;border:0;border-radius:8px;font-size:16px;cursor:pointer;">Post Demo Review</button>
+      </form>
+      <p id="hh-review-feedback" role="status" aria-live="polite"></p>
+      <div id="hh-user-reviews" style="display:grid;gap:12px;margin-top:18px;"></div>
+    </div>
+    <p style="text-align:center;color:#73796f;font-size:12px;margin-top:25px;">All example reviews are fictional. Submitted demo reviews are temporary and reset when the page reloads.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  const form = document.getElementById('hh-review-form');
+  const list = document.getElementById('hh-user-reviews');
+  if (!form || !list || form.dataset.ready) return;
+  form.dataset.ready = 'true';
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById('hh-review-name').value.trim();
+    const rating = Number(document.getElementById('hh-review-rating').value);
+    const review = document.getElementById('hh-review-text').value.trim();
+
+    if (!name || !review || rating < 1 || rating > 5) {
+      document.getElementById('hh-review-feedback').textContent = 'Please complete all fields.';
+      return;
+    }
+
+    const card = document.createElement('article');
+    card.style.cssText = 'padding:16px;background:#f8f5ef;border-radius:10px;';
+
+    const stars = document.createElement('p');
+    stars.style.color = '#b56b45';
+    stars.textContent = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+    const heading = document.createElement('h4');
+    heading.textContent = name;
+
+    const paragraph = document.createElement('p');
+    paragraph.textContent = review;
+
+    const note = document.createElement('small');
+    note.style.color = '#73796f';
+    note.textContent = 'Temporary demo review — not verified';
+
+    card.append(stars, heading, paragraph, note);
+    list.prepend(card);
+
+    document.getElementById('hh-review-feedback').textContent =
+      'Your demo review has been added to this page!';
+    form.reset();
+  });
+})();
+</script>
+
 </body>
 </html>
