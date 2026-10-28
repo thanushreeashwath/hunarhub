@@ -798,5 +798,133 @@ document.getElementById('hunarhub-request-form').addEventListener('submit', func
 })();
 </script>
 
+<section id="hh-wishlist" style="padding:45px 20px;background:#fff;color:#263c2c;font-family:Arial,sans-serif;">
+  <div style="max-width:1100px;margin:auto;">
+    <p style="letter-spacing:3px;color:#285c43;">YOUR COLLECTION</p>
+    <h2 style="font-size:32px;margin-bottom:8px;">Your Favourite Makers ♡</h2>
+    <p style="color:#73796f;">Keep the artisans and crafts you love close.</p>
+    <div id="hh-wishlist-items" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:25px;"></div>
+    <p id="hh-wishlist-empty" style="padding:25px;background:#f8f5ef;border-radius:12px;">Your wishlist is empty. Visit Find Your Local Maker and tap ♡ to save an artisan.</p>
+    <button id="hh-clear-wishlist" type="button" style="display:none;margin-top:15px;padding:10px 16px;border:1px solid #d8cfc0;background:white;border-radius:8px;cursor:pointer;">Clear wishlist</button>
+    <p style="font-size:12px;color:#73796f;margin-top:18px;">Saved on this browser only. Clearing browser data may remove your favourites.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  const marketplace = document.getElementById('hh-marketplace-upgrade');
+  const wishlist = document.getElementById('hh-wishlist');
+  if (!marketplace || !wishlist || wishlist.dataset.ready) return;
+  wishlist.dataset.ready = 'true';
+
+  const storageKey = 'hunarhub-favourite-makers-v1';
+  const items = wishlist.querySelector('#hh-wishlist-items');
+  const empty = wishlist.querySelector('#hh-wishlist-empty');
+  const clear = wishlist.querySelector('#hh-clear-wishlist');
+
+  function loadFavorites() {
+    try {
+      const data = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      return Array.isArray(data) ? data.filter(x => typeof x === 'string') : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveFavorites(favorites) {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(favorites));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function makerCards() {
+    return Array.from(marketplace.querySelectorAll('#hh-maker-grid article'));
+  }
+
+  function syncHearts() {
+    const favorites = loadFavorites();
+    makerCards().forEach(function (card) {
+      const button = card.querySelector('[data-favorite]');
+      if (!button) return;
+      const saved = favorites.includes(card.querySelector('h3').textContent);
+      button.textContent = saved ? '♥' : '♡';
+      button.setAttribute('aria-pressed', String(saved));
+      button.style.color = saved ? '#b45e4b' : '#263c2c';
+    });
+  }
+
+  function renderWishlist() {
+    const favorites = loadFavorites();
+    items.replaceChildren();
+
+    const savedCards = makerCards().filter(function (card) {
+      return favorites.includes(card.querySelector('h3').textContent);
+    });
+
+    savedCards.forEach(function (card) {
+      const name = card.querySelector('h3').textContent;
+      const category = card.dataset.category;
+      const item = document.createElement('article');
+      item.style.cssText = 'padding:20px;background:#f8f5ef;border:1px solid #eee5d8;border-radius:14px;';
+      
+      const heading = document.createElement('h3');
+      heading.textContent = name;
+      const description = document.createElement('p');
+      description.textContent = category + ' · Saved maker';
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = '♥ Remove favourite';
+      remove.style.cssText = 'padding:10px 14px;background:#285c43;color:white;border:0;border-radius:8px;cursor:pointer;';
+
+      remove.addEventListener('click', function () {
+        saveFavorites(loadFavorites().filter(x => x !== name));
+        syncHearts();
+        renderWishlist();
+      });
+
+      item.append(heading, description, remove);
+      items.appendChild(item);
+    });
+
+    empty.style.display = savedCards.length ? 'none' : 'block';
+    clear.style.display = savedCards.length ? 'inline-block' : 'none';
+  }
+
+  marketplace.addEventListener('click', function (event) {
+    const button = event.target.closest('[data-favorite]');
+    if (!button) return;
+
+    const card = button.closest('article');
+    if (!card) return;
+    const name = card.querySelector('h3').textContent;
+    let favorites = loadFavorites();
+
+    favorites = favorites.includes(name)
+      ? favorites.filter(x => x !== name)
+      : [...favorites, name];
+
+    if (!saveFavorites(favorites)) {
+      wishlist.querySelector('#hh-wishlist-empty').textContent =
+        'Your browser could not save favourites. Please check browser storage settings.';
+      return;
+    }
+
+    renderWishlist();
+  });
+
+  clear.addEventListener('click', function () {
+    if (!saveFavorites([])) return;
+    syncHearts();
+    renderWishlist();
+  });
+
+  syncHearts();
+  renderWishlist();
+})();
+</script>
+
 </body>
 </html>
