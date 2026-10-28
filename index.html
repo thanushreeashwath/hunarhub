@@ -1112,5 +1112,102 @@ document.getElementById('hunarhub-request-form').addEventListener('submit', func
 })();
 </script>
 
+<!-- HUNARHUB FOOTER -->
+<footer class="hh-footer">
+  <div class="hh-footer-main">
+    <div>
+      <a href="#home" class="hh-footer-logo">hunarhub.</a>
+      <p>Meet your people. Discover their skills.<br>
+      Support the hands that make our world.</p>
+    </div>
+
+    <div>
+      <h3>Explore</h3>
+      <a href="#hh-marketplace-upgrade">Meet the Makers</a>
+      <a href="#hh-service-request">Request a Service</a>
+      <a href="#hh-reviews">Customer Reviews</a>
+    </div>
+
+    <div>
+      <h3>Your HunarHub</h3>
+      <a href="#hh-favorites">Saved Makers</a>
+      <a href="#hh-dashboard">Maker Dashboard</a>
+      <a href="#home">Back to Home</a>
+    </div>
+  </div>
+
+  <div class="hh-footer-bottom">
+    <span>© 2026 HunarHub</span>
+    <span>Made to celebrate local talent ♡</span>
+  </div>
+</footer>
+
+<style>
+.hh-footer {
+  margin-top: 70px;
+  padding: 42px 6% 18px;
+  background: #203e31;
+  color: #fffaf1;
+  font-family: Arial, sans-serif;
+}
+
+.hh-footer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 35px;
+  padding-bottom: 32px;
+}
+
+.hh-footer-logo {
+  color: #fffaf1;
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.hh-footer p {
+  color: #d8dfd5;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.hh-footer h3 {
+  font-size: 15px;
+  margin-top: 4px;
+  margin-bottom: 15px;
+}
+
+.hh-footer-main > div > a:not(.hh-footer-logo) {
+  display: block;
+  width: fit-content;
+  margin: 11px 0;
+  color: #d8dfd5;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.hh-footer a:hover {
+  color: #efb18e !important;
+}
+
+.hh-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px solid #ffffff2b;
+  padding-top: 17px;
+  color: #d8dfd5;
+  font-size: 12px;
+}
+
+@media (max-width: 650px) {
+  .hh-footer-main {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+</style>
+
 </body>
 </html>
